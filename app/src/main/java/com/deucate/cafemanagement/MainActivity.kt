@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
         SplashScreenBuilder.getInstance(this)
             .setImage(R.mipmap.ic_launcher)
             .setVideo(R.raw.splash_animation)
+            .setTitle("Cafe Management")
+            .setSubtitle("Powerd by Bilwg")
             .show()
 
         val webView = findViewById<WebView>(R.id.mainWebView)
