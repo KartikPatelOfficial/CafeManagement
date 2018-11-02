@@ -14,20 +14,21 @@ import com.mrgames13.jimdo.splashscreen.App.SplashScreenBuilder
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var webView: WebView
+
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar!!.hide()
         setContentView(R.layout.activity_main)
 
         SplashScreenBuilder.getInstance(this)
             .setImage(R.mipmap.ic_launcher)
             .setVideo(R.raw.splash_animation)
             .setTitle("Cafe Management")
-            .setSubtitle("Powerd by Bilwg")
+            .setSubtitle("Powerd by Matex Technology")
             .show()
 
-        val webView = findViewById<WebView>(R.id.mainWebView)
+        webView = findViewById(R.id.mainWebView)
         webView.settings.javaScriptEnabled = true
 
         webView.webViewClient = object : WebViewClient() {
@@ -43,5 +44,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         webView.loadUrl("http://demo.matextechnology.com/cafe/login")
+    }
+
+    override fun onBackPressed() {
+        if (webView.canGoBack()) {
+            webView.goBack()
+        } else {
+            super.onBackPressed()
+        }
     }
 }
